@@ -66,7 +66,7 @@ public class EveJumpService {
 
     private String formatJumpInformation(final String source, final String destination, List<Integer> systems,
                                          final String routeSecurity) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         result.append("The ").append(routeSecurity).append(" route from ")
                 .append(source)
                 .append(" is ")

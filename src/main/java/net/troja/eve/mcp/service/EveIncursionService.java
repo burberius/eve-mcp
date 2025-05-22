@@ -15,6 +15,7 @@ import java.util.List;
 
 import static net.troja.eve.mcp.ApiExceptionHandler.handleApiException;
 import static net.troja.eve.mcp.McpServerApplication.DATASOURCE;
+import static net.troja.eve.mcp.service.SolarSystemService.VALUE_UNKNOWN;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +29,7 @@ public class EveIncursionService {
     public String getIncursionsInformation() {
         try {
             List<IncursionsResponse> incursions = incursionsApi.getIncursions(DATASOURCE, null);
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             incursions.forEach(incursion -> handleIncursion(incursion, buffer));
             return buffer.toString().trim();
         } catch (ApiException e) {
@@ -36,7 +37,7 @@ public class EveIncursionService {
         }
     }
 
-    private void handleIncursion(final IncursionsResponse incursion, final StringBuffer buffer) {
+    private void handleIncursion(final IncursionsResponse incursion, final StringBuilder buffer) {
         buffer.append("Incursion in constellation ").append(getConstellationName(incursion.getConstellationId()))
                 .append(" against faction ").append(getFactionName(incursion.getFactionId()))
                 .append(" has been ").append(incursion.getStateString())
@@ -52,16 +53,16 @@ public class EveIncursionService {
 
     private String getConstellationName(final int constellationId) {
         return constellationsRepository.findById(constellationId).map(Constellation::getConstellationName)
-                .orElse("Unknown");
+                .orElse(VALUE_UNKNOWN);
     }
 
     private String getFactionName(final int factionId) {
         return factionsRepository.findById(factionId).map(net.troja.eve.mcp.db.model.Faction::getFactionName)
-                .orElse("Unknown");
+                .orElse(VALUE_UNKNOWN);
     }
 
     private String getSolarSystemName(final int solarSystemId) {
         return systemsRepository.findById(solarSystemId).map(net.troja.eve.mcp.db.model.SolarSystem::getSolarSystemName)
-                .orElse("Unknown");
+                .orElse(VALUE_UNKNOWN);
     }
 }

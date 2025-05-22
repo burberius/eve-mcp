@@ -26,7 +26,6 @@ import static net.troja.eve.mcp.McpServerApplication.DATASOURCE;
 import static net.troja.eve.mcp.db.repository.SolarSystemsRepositoryTest.SOLAR_SYSTEM_ID_JITA;
 import static net.troja.eve.mcp.db.repository.SolarSystemsRepositoryTest.SOLAR_SYSTE_NAME_JITA;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.DATE;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)

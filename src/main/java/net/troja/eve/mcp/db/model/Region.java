@@ -1,6 +1,5 @@
 package net.troja.eve.mcp.db.model;
 
-import jakarta.annotation.security.DenyAll;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

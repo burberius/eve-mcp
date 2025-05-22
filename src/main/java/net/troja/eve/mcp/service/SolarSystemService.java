@@ -30,6 +30,7 @@ import static net.troja.eve.mcp.service.EveJumpService.SECURITY_LEVEL_FORMATTER;
 @Slf4j
 @RequiredArgsConstructor
 public class SolarSystemService {
+    public static final String VALUE_UNKNOWN = "Unknown";
     private final SolarSystemsRepository solarSystemsRepository;
     private final FactionsRepository factionsRepository;
     private final RegionsRepository regionsRepository;
@@ -93,16 +94,16 @@ public class SolarSystemService {
 
     private String getConstellationName(final int constellationId) {
         return constellationsRepository.findById(constellationId).map(Constellation::getConstellationName)
-                .orElse("Unknown");
+                .orElse(VALUE_UNKNOWN);
     }
 
     private String getFactionName(final int factionId) {
         return factionsRepository.findById(factionId).map(net.troja.eve.mcp.db.model.Faction::getFactionName)
-                .orElse("Unknown");
+                .orElse(VALUE_UNKNOWN);
     }
     
     private String getRegionName(final int regionId) {
-        return regionsRepository.findById(regionId).map(Region::getRegionName).orElse("Unknown");
+        return regionsRepository.findById(regionId).map(Region::getRegionName).orElse(VALUE_UNKNOWN);
     }
 
     @Data
