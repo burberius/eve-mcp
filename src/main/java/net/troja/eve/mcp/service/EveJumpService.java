@@ -73,9 +73,7 @@ public class EveJumpService {
                 .append(systems.size())
                 .append(" jumps from ")
                 .append(destination).append(":\n");
-        systems.forEach(systemId -> {
-            result.append("* ").append(getSolarSystemName(systemId)).append("\n");
-        });
+        systems.forEach(systemId -> result.append("* ").append(getSolarSystemName(systemId)).append("\n"));
         return result.toString();
     }
 
